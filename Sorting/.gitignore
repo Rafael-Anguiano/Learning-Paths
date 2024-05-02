@@ -1,0 +1,27 @@
+# C++ build artifacts
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# C++ dependency directories
+/build/
+/bin/
+
+# JavaScript build artifacts
+node_modules/
+dist/
+build/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln.docstates
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
