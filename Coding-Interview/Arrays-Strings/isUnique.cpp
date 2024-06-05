@@ -12,6 +12,7 @@ bool isUnique (String s) {
 		if(h.count(s)) return false;
 		h.insert(s);
 	}
+
 	return true;
 }
 
@@ -26,7 +27,3 @@ bool isUnique (String s) {
 }
 // You can argue that this is also O(1) complexity due that the space is fixed to the number of characters.
 // Or in other case O(k) where k is the number of characters contempled
-
-
-
-// There is still other solution using bit operators and bit manipulation.
