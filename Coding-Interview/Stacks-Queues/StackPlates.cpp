@@ -56,6 +56,7 @@ class SetOfStacks {
 public:
   int threshold;
   vector<Stack*> stacks;
+  Stack * unCompleted = new Stack();
 
   SetOfStacks (int threshold) {
     this->threshold = threshold;
@@ -63,6 +64,11 @@ public:
 
   void push (int item) {
     if (!stacks.size() || stacks[stacks.size()-1]->size >= threshold) stacks.push_back(new Stack());
+    if (!unCompleted->isEmpty()) {
+      stacks[unCompleted->peek()]->push(item);
+      unCompleted->pop();
+      return;
+    }
     stacks[stacks.size()-1]->push(item);
   }
   int pop () {
@@ -72,7 +78,11 @@ public:
   }
 
   int popAt (int index) {
-    return stacks[index]->pop();
+    if (index >= stacks.size() || index < 0) return -1;
+    int item = stacks[index]->pop();
+    if (stacks[index]->isEmpty()) stacks.erase(stacks.begin() + index);
+    else unCompleted->push(index);
+    return item;
   }
 
   bool isEmpty () {
@@ -94,11 +104,12 @@ int main () {
   plates->push(7);
 
   cout << plates->popAt(0) << endl;
-  cout << plates->pop() << endl;
-  cout << plates->pop() << endl;
-  cout << plates->pop() << endl;
-  cout << plates->pop() << endl;
-  cout << plates->pop() << endl;
+  cout << plates->popAt(0) << endl;
+  cout << plates->popAt(0) << endl;
+  plates->push(8);
+  cout << plates->popAt(0) << endl;
+  cout << plates->popAt(0) << endl;
+  cout << plates->popAt(0) << endl;
   cout << plates->pop() << endl;
   cout << plates->pop() << endl;
 
