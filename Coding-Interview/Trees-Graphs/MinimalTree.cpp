@@ -1,7 +1,7 @@
 /*
 * Minimal Tree:
 * Given a sorted (increasing order) array with unique integer elements,
-* write an algorithm to create a binary search tree with minimal height.
+* Write an algorithm to create a binary search tree with minimal height.
 *
 * Example:
 * Input: {1, 2, 3, 4, 5, 6, 7}
@@ -27,22 +27,21 @@ class Node {
 };
 
 Node * createMinimalTree (vector<int> arr) {
-  Node* head = new Node(arr[0]);
-  queue<Node*> q;
-  q.push(head);
+  Node * head = new Node(arr[arr.size()/2]);
 
-  for (int i=1; i<arr.size(); i++) {
-    Node * leftNode = new Node(arr[i]);
-    Node * rightNode = i+1 < arr.size() ? new Node(arr[i+1]) : nullptr;
+  cout << head->data << endl;
 
-    q.front()->left = leftNode;
-    if (rightNode) q.front()->right = rightNode;
-    q.pop();
-    q.push(leftNode);
-    if (rightNode) q.push(rightNode);
+  if (arr.size() <= 1) return head;
 
-    i = i+1;
+  vector<int>arrLeft;
+  vector<int>arrRight;
+  for (int i=0; i<arr.size(); i++) {
+    if (i < arr.size()/2) arrLeft.push_back(arr[i]);
+    if (i > arr.size()/2) arrRight.push_back(arr[i]);
   }
+
+  if (arrLeft.size()) head->left = createMinimalTree(arrLeft);
+  if (arrRight.size()) head->right = createMinimalTree(arrRight);
 
   return head;
 }
@@ -64,9 +63,16 @@ void printTreeByLevel (Node * root) {
 }
 
 int main () {
+  // Test 1:
   vector<int> arr = {1, 2, 3, 4, 5, 6, 7};
   Node * tree = createMinimalTree(arr);
   printTreeByLevel(tree);
-  
+
+  // Test 2:
+  vector<int> arr2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+  Node * tree2 = createMinimalTree(arr2);
+  printTreeByLevel(tree2);
+
+
   return 0;
 }
