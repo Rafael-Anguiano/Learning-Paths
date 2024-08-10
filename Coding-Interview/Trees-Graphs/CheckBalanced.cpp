@@ -28,7 +28,7 @@ public:
 };
 
 vector<int> checkIfBalanced (Node* head) {
-  if (!head) return {1, 0};
+  if (!head) return {1, -1};
 
   vector<int> left = checkIfBalanced(head->left);
   vector<int> right = checkIfBalanced(head->right);
