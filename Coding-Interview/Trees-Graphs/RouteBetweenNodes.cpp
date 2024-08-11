@@ -14,20 +14,16 @@
 
 using namespace std;
 
-enum class state {
-  unVisited,
-  visited,
-  visiting,
-};
-
 class Node {
 public:
     int data;
     vector<Node*> next;
-    
+    bool visited;
+
     Node(int data) {
         this->data = data;
         this->next = {};
+        this->visited = false;
     }
 
     void addNext(Node* node) {
@@ -43,11 +39,23 @@ public:
   void addNode (Node* node) {
     nodes.push_back(node);
   }
-};
 
-bool checkRoute (Graph* graph, Node* start, Node* end) {
-  
-}
+  bool routeBetweenNodes (Node* start, Node* end) {
+    if (start == nullptr) return false;
+
+    for (Node* node : start->next)
+      if (node->data == end->data) return true;
+
+    for (Node* node : start->next) {
+      if (node->visited) continue;
+
+      bool result = routeBetweenNodes(node, end);
+      if (result) return result;
+      node->visited = true;
+    }
+    return false;
+  }
+};
 
 
 int main () {
@@ -57,20 +65,22 @@ int main () {
   Node* four = new Node(4);
   Node* five = new Node(5);
   Node* six = new Node(6);
-  one.addNext(two);
-  one.addNext(three);
-  two.addNext(six);
-  three.addNext(four);
-  five.addNext(one);
-  six.addNext(four);
+  one->addNext(two);
+  one->addNext(three);
+  two->addNext(six);
+  three->addNext(four);
+  five->addNext(one);
+  six->addNext(four);
 
   Graph* graph = new Graph();
-  graph.addNode(one);
-  graph.addNode(two);
-  graph.addNode(three);
-  graph.addNode(four);
-  graph.addNode(five);
-  graph.addNode(six);
+  graph->addNode(one);
+  graph->addNode(two);
+  graph->addNode(three);
+  graph->addNode(four);
+  graph->addNode(five);
+  graph->addNode(six);
+
+  cout << graph->routeBetweenNodes(five, six) << endl;
 
   return 0;
 }
