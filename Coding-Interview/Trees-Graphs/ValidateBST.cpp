@@ -60,5 +60,14 @@ int main () {
   root2->left->right = new Node(6);
   cout << isValidBST(root2) << endl;
 
+  Node* root3 = new Node(20);
+  root3->left = new Node(10);
+  root3->right = new Node(30);
+  root3->left->left = new Node(5);
+  root3->left->right = new Node(15);
+  root3->left->left->left = new Node(3);
+  root3->left->left->right = new Node(7);
+  root3->left->right->right = new Node(17);
+  cout << isValidBST(root3) << endl;
   return 0;
 }
