@@ -11,21 +11,9 @@
 #include <vector>
 #include <string>
 #include <math.h>
+#include "../Utils/node.h"
 
 using namespace std;
-
-class Node {
-public:
-  int data;
-  Node* left;
-  Node* right;
-
-  Node (int d) {
-    this->data = d;
-    left = nullptr;
-    right = nullptr;
-  }
-};
 
 vector<int> checkIfBalanced (Node* head) {
   if (!head) return {1, -1};

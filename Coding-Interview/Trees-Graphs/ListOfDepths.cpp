@@ -14,25 +14,11 @@
 */
 
 #include <iostream>
-#include <queue>
 #include <list>
-#include <set>
 #include <math.h>
+#include "../Utils/node.h"
 
 using namespace std;
-
-class Node {
-public:
-  int data;
-  Node* left;
-  Node* right;
-
-  Node(int x) {
-    this->data = x;
-    this->left = nullptr;
-    this->right = nullptr;
-  }
-};
 
 void printList (list<Node*> li) {
   while (!li.empty()) {

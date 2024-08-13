@@ -11,20 +11,9 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include "../Utils/node.h"
 
 using namespace std;
-
-class Node {
-  public:
-    int data;
-    Node* left;
-    Node* right;
-    Node(int data) {
-      this->data = data;
-      this->left = nullptr;
-      this->right = nullptr;
-    }
-};
 
 Node * createMinimalTree (vector<int> arr) {
   Node * head = new Node(arr[arr.size()/2]);
@@ -49,8 +38,10 @@ Node * createMinimalTree (vector<int> arr) {
 void printTreeByLevel (Node * root) {
   queue<Node*> q;
   q.push(root);
+
   while (!q.empty()) {
     int size = q.size();
+
     for (int i=0; i<size; i++) {
       Node * node = q.front();
       q.pop();
