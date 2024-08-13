@@ -12,27 +12,34 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <string>
 
 using namespace std;
 
+enum STATE {
+  UNVISITED,
+  VISITING,
+  VISITED
+};
+
 class Node {
 public:
-    int data;
-    vector<Node*> next;
-    bool visited;
+  int data;
+  vector<Node*> next;
+  STATE state;
 
-    Node(int data) {
-        this->data = data;
-        this->next = {};
-        this->visited = false;
-    }
+  Node(int data) {
+    this->data = data;
+    this->next = {};
+    this->state = UNVISITED;
+  }
 
-    void addNext(Node* node) {
-      next.push_back(node);
-    }
-    void addNext(vector<Node*> nodes) {
-      this->next = nodes;
-    }
+  void addNext(Node* node) {
+    next.push_back(node);
+  }
+  void addNext(vector<Node*> nodes) {
+    this->next = nodes;
+  }
 };
 
 
@@ -54,11 +61,11 @@ public:
       if (node->data == end->data) return true;
 
     for (Node* node : start->next) {
-      if (node->visited) continue;
+      if (node->state == VISITED) continue;
 
       bool result = routeBetweenNodes(node, end);
       if (result) return result;
-      node->visited = true;
+      node->state = VISITED;
     }
     return false;
   }
@@ -66,6 +73,7 @@ public:
   bool breadthFirstSearch (Node* start, Node* end) {
     if (start == nullptr) return false;
 
+    cout << "Search Started" << endl;
     queue<Node*> q;
     q.push(start);
 
@@ -73,7 +81,6 @@ public:
       Node* curr = q.front();
       q.pop();
 
-      if (curr->visited) continue;
       cout << "Curr: " << curr->data << endl;
 
       for (Node* child : curr->next) {
@@ -81,12 +88,14 @@ public:
           cout << "END: " << child->data << endl;
           return true;
         }
-        if (!child->visited) q.push(child);
+        if (child->state == UNVISITED) {
+          q.push(child);
+          child->state = VISITING;
+        }
       }
 
-      curr->visited = true;
+      curr->state = VISITED;
     }
-    cout << "Finished" << endl;
 
     return false;
   }
@@ -115,7 +124,7 @@ int main () {
   three->addNext({zero});
   four->addNext({two});
   five->addNext({zero});
-  six->addNext({four});
+  six->addNext({eight});
   seven->addNext({one, two, six});
   eight->addNext({zero, three});
   nine->addNext({four});
@@ -127,10 +136,11 @@ int main () {
     zero, one, two, three, four, five, six, seven, eight, nine, ten
   });
 
-  cout << graph->routeBetweenNodes(seven, five) << endl;
+  // cout << graph->routeBetweenNodes(seven, three) << endl;
   
-  cout << "Breadth Firts Search " << endl; 
-  cout << graph->breadthFirstSearch(seven, three) << endl;
+  cout << "Breadth Firts Search " << endl;
+  string result = graph->breadthFirstSearch(seven, ten) ? "Route Found" : "Route Not Found";
+  cout << result << endl;
 
   return 0;
 }
