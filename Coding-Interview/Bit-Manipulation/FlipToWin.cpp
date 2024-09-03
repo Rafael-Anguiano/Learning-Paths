@@ -10,8 +10,8 @@
 */
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -25,7 +25,8 @@ int flipToWin (int number) {
   int curr = 0;
   int max = 0;
 
-  for (int i=0; i<32; i++) {
+  int numberOfBits = sizeof(int) * 8;
+  for (int i = 0; i < numberOfBits; i++) {
     curr++;
     if (getBit(number, i+1) != getBit(number, i)) {
       consecutive.push_back(getBit(number, i) ? curr : curr * -1);
@@ -46,9 +47,8 @@ int flipToWin (int number) {
 }
 
 int main () {
-  
-  int number = 2005;
 
+  int number = 2005;
   cout << flipToWin(number) << endl;
 
 
