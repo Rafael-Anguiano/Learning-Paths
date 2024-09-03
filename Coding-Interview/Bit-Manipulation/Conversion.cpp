@@ -8,14 +8,11 @@
 */
 
 #include <iostream>
+#include "./BitOperations.h"
 
 using namespace std;
 
-bool getBit (int num, int i) {
-  return (num & (1 << i)) != 0;
-}
-
-int setBit (int num, int i) {
+int changeBit (int num, int i) {
   int mask = 1 << i;
   if (getBit(num, i) == false) {
     return num | mask;
@@ -24,12 +21,11 @@ int setBit (int num, int i) {
 }
 
 int conversion (int a, int b) {
-
   int count = 0, i = 0;
 
   while (a != b) {
     if (getBit(a, i) != getBit(b, i)) {
-      b = setBit(b, i);
+      b = changeBit(b, i);
       count++;
     }
     i++;
