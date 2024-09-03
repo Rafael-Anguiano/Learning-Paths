@@ -3,7 +3,7 @@
 using namespace std;
 
 bool getBit (int num, int i) {
-  return (num & (1 << i)) != 0;
+  return num & (1 << i);
 }
 
 int setBit (int num, int i) {
@@ -25,11 +25,3 @@ int clearBitsIthrough0 (int num, int i) {
   return num & mask;
 }
 
-int main () {
-  int num1 = 10;
-
-  cout << getBit(num1, 0) << endl;
-  cout << setBit(num1, 2) << endl;
-
-  return 0;
-}

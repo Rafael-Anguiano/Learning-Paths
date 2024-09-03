@@ -12,13 +12,9 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include "./BitOperations.h"
 
 using namespace std;
-
-bool getBit (int num, int i) {
-  return num & (1<<i);
-}
-
 
 int flipToWin (int number) {
   vector<int> consecutive;
