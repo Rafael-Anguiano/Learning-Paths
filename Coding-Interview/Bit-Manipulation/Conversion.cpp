@@ -12,20 +12,12 @@
 
 using namespace std;
 
-int changeBit (int num, int i) {
-  int mask = 1 << i;
-  if (getBit(num, i) == false) {
-    return num | mask;
-  }
-  return num & ~mask;
-}
-
 int conversion (int a, int b) {
   int count = 0, i = 0;
 
   while (a != b) {
     if (getBit(a, i) != getBit(b, i)) {
-      b = changeBit(b, i);
+      b = toggleBit(b, i);
       count++;
     }
     i++;

@@ -25,3 +25,10 @@ int clearBitsIthrough0 (int num, int i) {
   return num & mask;
 }
 
+int toggleBit (int num, int i) {
+  int mask = 1 << i;
+  if ( !getBit(num, i) ) {
+    return num | mask;
+  }
+  return num & ~mask;
+}
