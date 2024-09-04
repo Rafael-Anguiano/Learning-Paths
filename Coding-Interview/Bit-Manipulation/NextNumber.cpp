@@ -18,11 +18,8 @@ int numberOfBits (int num) {
 }
 
 vector<int> nextNumber (int number) {
-
   int currHigh = number+1, currLow = number-1;
-
   int numBits = numberOfBits(number);
-  int flag = true;
 
   while ( numberOfBits(currHigh) != numBits || numberOfBits(currLow) != numBits ) {
     if (numberOfBits(currHigh) != numBits) currHigh++;
