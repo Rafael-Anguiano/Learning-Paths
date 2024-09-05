@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int bitwiseSwap (int number) {
+int pairwiseSwap (int number) {
   for (int i=0; i < sizeof(int)*8; i += 2) {
     if (getBit(number, i) == getBit(number, i+1)) {
       continue;
@@ -26,7 +26,7 @@ int main () {
   int number = 722;
 
   cout << "Start number: " << number <<  endl << intToBinaryString(number) << endl;
-  number = bitwiseSwap(number);
+  number = pairwiseSwap(number);
   cout << "Final number: " << number << endl << intToBinaryString(number) << endl;
 
   return 0;
