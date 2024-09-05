@@ -10,24 +10,24 @@
 
 using namespace std;
 
-
 int bitwiseSwap (int number) {
-  int newNumber = number;
-  for (int i=0; i<sizeof(number)*8; i+=2) {
+  for (int i=0; i < sizeof(int)*8; i += 2) {
     if (getBit(number, i) == getBit(number, i+1)) {
       continue;
     } else {
-      newNumber = toggleBit(number, i);
-      newNumber = toggleBit(number, i+1);
+      number = toggleBit(number, i);
+      number = toggleBit(number, i+1);
     }
   }
-  return newNumber;
+  return number;
 }
 
 int main () {
-  int number = 0b10101010;
+  int number = 722;
 
-  cout << bitwiseSwap(number) << endl;
+  cout << "Start number: " << number <<  endl << intToBinaryString(number) << endl;
+  number = bitwiseSwap(number);
+  cout << "Final number: " << number << endl << intToBinaryString(number) << endl;
 
   return 0;
 }

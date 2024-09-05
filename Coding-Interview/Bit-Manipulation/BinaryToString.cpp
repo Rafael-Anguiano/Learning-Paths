@@ -12,20 +12,6 @@
 
 using namespace std;
 
-string intToBinaryString (int num) {
-  string resultString = "";
-  for (int i=0; i < sizeof(num) * 8; i++ ) {
-    if (getBit(num, i)) {
-      resultString = "1" + resultString;
-    } else {
-      resultString = "0" + resultString;
-    }
-  }
-
-  return resultString;
-}
-
-
 string doubleToBinaryString (double num) {
   if (num >= 1 || num <= 0) return "ERROR";
 
