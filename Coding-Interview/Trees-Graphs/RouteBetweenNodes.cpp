@@ -35,7 +35,7 @@ public:
   }
 
   void addNext(Node* node) {
-    next.push_back(node);
+    this->next.push_back(node);
   }
   void addNext(vector<Node*> nodes) {
     this->next = nodes;
