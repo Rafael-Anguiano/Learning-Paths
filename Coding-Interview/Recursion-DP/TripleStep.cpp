@@ -19,6 +19,23 @@ int possibleWaysToStair (int stairSize) {
   return results[stairSize];
 }
 
+int possibleWaysToStairIterative (int stairSize) {
+  vector<int> steps (3);
+  steps[0] = 0;
+  steps[1] = 1;
+  steps[2] = 1;
+  int result = 0;
+
+  for (int i = 1; i < stairSize; i++) {
+    result = steps[0] + steps[1] + steps[2];
+    steps[0] = steps[1];
+    steps[1] = steps[2];
+    steps[2] = result;
+  }
+
+  return steps[2];
+}
+
 int main () {
   cout << "Stair Size 5: " << possibleWaysToStair(5) << endl;
   cout << "Stair Size 8: " << possibleWaysToStair(8) << endl;
