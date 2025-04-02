@@ -36,19 +36,18 @@ Explanation: There are three ways to climb to the top.
 
 using namespace std;
 
-int possibilities (int sizeStair) {
-  vector<int> steps (sizeStair, 0);
-  steps[0] = 1; // Size: 0
-  if (sizeStair > 1) steps[1] = 2; // Size: 1
-  
-  for (size_t i = 2; i < steps.size(); i++) {
-    steps[i] = steps[i - 1] + steps[i - 2];
-  }
-  
-  return steps[sizeStair - 1];
-}
-
-
+//
+// int possibilities (int sizeStair) {
+//   vector<int> steps (sizeStair, 0);
+//   steps[0] = 1; // Size: 0
+//   if (sizeStair > 1) steps[1] = 2; // Size: 1
+//   
+//   for (size_t i = 2; i < steps.size(); i++) {
+//     steps[i] = steps[i - 1] + steps[i - 2];
+//   }
+//   
+//   return steps[sizeStair - 1];
+// }
 
 int possibilities (int sizeStair) {
   vector<int> steps (2, 0);
@@ -62,7 +61,12 @@ int possibilities (int sizeStair) {
     steps[1] = result;
   }
   
-  return step[1];
+  return steps[1];
+}
+
+int main () {
+  cout << possibilities(4) << endl;
+  return 0;
 }
 
 
