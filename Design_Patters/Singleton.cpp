@@ -22,8 +22,8 @@ private:
   static Singleton* pinstance_;
   static mutex mutex_;
 protected:
-  Singleton(const string value): value_(value){}
   string value_;
+  Singleton(const string value): value_(value){}
  
 public:
   // Not clonable

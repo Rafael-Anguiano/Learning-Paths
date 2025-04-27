@@ -1,6 +1,6 @@
 /*
 * Adapter
-* 
+*
 * Structural Desing Pattern that allows colaboration between objects with incompatible interfaces.
 */
 

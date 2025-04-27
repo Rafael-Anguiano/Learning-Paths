@@ -11,21 +11,21 @@ using namespace std;
 // This is the interface of a Product, that should be the parent of every new product
 class Product {
 public:
-  virtual ~Product (){}
   virtual string doSomething() const = 0;
+  virtual ~Product (){}
 };
 
 // Each Product class place the parent methods as needed
 class ConcreteProduct1 : public Product {
 public:
-  string doSomething () const override {
+  virtual string doSomething () const override {
     return "Operation of Concrete Product 1";
   }
 };
 
 class ConcreteProduct2 : public Product {
 public:
-  string doSomething() const override {
+  virtual string doSomething() const override {
     return "Operation of Concrete Product 2";
   }
 };
@@ -33,8 +33,8 @@ public:
 // Creator class is the interface that every concrete creator should use
 class Creator {
 public:
-  virtual ~Creator(){}
   virtual Product* FactoryMethod() const = 0;
+  virtual ~Creator(){}
 
   string creatorOperation() const {
     Product* product = this->FactoryMethod();
