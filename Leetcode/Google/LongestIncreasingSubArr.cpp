@@ -29,17 +29,13 @@ int longestIncreasingSubArr(std::vector<int> array) {
 
   for (int i = 1; i < array.size(); i++) {
     if (array[i] <= array[i - 1]) {
-      if (counter > result)
-        result = counter;
+      result = max(result, counter);
       counter = 1;
     } else {
       counter++;
     }
   }
-  if (counter > result)
-    result = counter;
-
-  return result;
+  return max(result, counter);
 }
 
 int main() {
